@@ -1,12 +1,18 @@
 package cases;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import pages.EventCardPage;
 import pages.EventsPage;
 import pages.MainPage;
 import utils.BaseHooks;
 
-
+@Execution(ExecutionMode.CONCURRENT)
 public class EventsTest extends BaseHooks {
 
     private MainPage mainPage;
@@ -14,7 +20,11 @@ public class EventsTest extends BaseHooks {
     private EventCardPage eventCardPage;
 
     @Test
-    public void checkUpcomingEventsCounter(){
+    @Epic("События")
+    @Feature("Ближайшие события")
+    @Story("Просмотр предстоящих мероприятий")
+    @Description("Количество событий равно ожидаемому значению")
+    public void checkUpcomingEventsCounter() {
         mainPage = new MainPage(driver);
         mainPage.open(baseUrl);
         mainPage.openEvents();
@@ -24,7 +34,11 @@ public class EventsTest extends BaseHooks {
     }
 
     @Test
-    public void checkUpcomingEventCardData(){
+    @Epic("События")
+    @Feature("Ближайшие события")
+    @Story("Просмотр данных карточек мероприятий")
+    @Description("Данные в найденном событие корректные")
+    public void checkUpcomingEventCardData() {
         mainPage = new MainPage(driver);
         mainPage.open(baseUrl);
         mainPage.openEvents();
@@ -34,7 +48,11 @@ public class EventsTest extends BaseHooks {
     }
 
     @Test
-    public void checkUpcomingEventDate(){
+    @Epic("События")
+    @Feature("Ближайшие события")
+    @Story("Валидация дат предстоящих мероприятий")
+    @Description("Дата в ближайшем событие корректная")
+    public void checkUpcomingEventDate() {
         mainPage = new MainPage(driver);
         mainPage.open(baseUrl);
         mainPage.openEvents();
@@ -44,7 +62,11 @@ public class EventsTest extends BaseHooks {
     }
 
     @Test
-    public void checkPastEventsInCanada(){
+    @Epic("События")
+    @Feature("Прошедшие события")
+    @Story("Просмотр прошедших мероприятий в Канаде")
+    @Description("Проверка данных прошедших событии в Канаде")
+    public void checkPastEventsInCanada() {
         mainPage = new MainPage(driver);
         mainPage.open(baseUrl);
         mainPage.openEvents();
@@ -56,6 +78,10 @@ public class EventsTest extends BaseHooks {
     }
 
     @Test
+    @Epic("События")
+    @Feature("Карточка события")
+    @Story("Просмотр детальной информации о мероприятии")
+    @Description("Данные в карточке события корректные")
     public void checkEventCardData() {
         mainPage = new MainPage(driver);
         mainPage.open(baseUrl);
@@ -66,5 +92,4 @@ public class EventsTest extends BaseHooks {
         eventCardPage = new EventCardPage(driver);
         eventCardPage.assertEventCardData();
     }
-
 }
