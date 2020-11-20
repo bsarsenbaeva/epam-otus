@@ -4,12 +4,13 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+
 import static java.time.DayOfWeek.MONDAY;
 import static java.time.DayOfWeek.SUNDAY;
 import static java.time.temporal.TemporalAdjusters.nextOrSame;
@@ -52,8 +53,6 @@ public class EventsPage extends AbstractPage {
     public WebElement filterTag;
     @FindBy(css = ".evnt-cards-container .evnt-event-card")
     public WebElement firstEventCard;
-    @FindBy(css = ".evnt-global-loader")
-    public WebElement loader;
 
     public EventsPage(WebDriver driver) {
         super(driver);
@@ -102,7 +101,7 @@ public class EventsPage extends AbstractPage {
     }
 
     @Step("Проверка даты ближайшего мероприятия")
-    public void assertUpcomingEventCardDate(){
+    public void assertUpcomingEventCardDate() {
         String dateOfThisWeekEventText = dateOfTheEvent.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH);
         LocalDate dateOfThisWeekEvent = LocalDate.parse(dateOfThisWeekEventText, formatter);
@@ -117,7 +116,7 @@ public class EventsPage extends AbstractPage {
     }
 
     @Step("Проверка даты прошедшего мероприятия")
-    public void assertPastEventCardDate(){
+    public void assertPastEventCardDate() {
         String dateOfPastEventText = dateOfTheEvent.getText();
         String splittedDateOfPastEvent = dateOfPastEventText.substring(dateOfPastEventText.length() - 10);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH);

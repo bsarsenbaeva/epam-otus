@@ -21,11 +21,6 @@ public abstract class AbstractPage {
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected Boolean waitForElementDisappear(WebElement element) {
-        return new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.invisibilityOf(element));
-    }
-
     protected List<WebElement> waitForElements(List<WebElement> elements) {
         return new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOfAllElements(elements));

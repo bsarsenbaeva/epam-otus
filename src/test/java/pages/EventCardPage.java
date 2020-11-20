@@ -10,7 +10,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class EventCardPage extends AbstractPage{
+public class EventCardPage extends AbstractPage {
 
     @FindBy(css = ".evnt-content-text")
     public WebElement eventName;
