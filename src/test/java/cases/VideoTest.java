@@ -24,6 +24,7 @@ public class VideoTest extends BaseHooks {
         mainPage.open(baseUrl);
         mainPage.openVideo();
         videoPage = new VideoPage(driver);
+        videoPage.openMoreFilters();
         videoPage.filterCardsByCategory("Testing");
         videoPage.filterCardsByLocation("Belarus");
         videoPage.filterCardsByLanguage();

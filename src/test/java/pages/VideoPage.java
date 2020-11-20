@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.*;
 
 public class VideoPage extends AbstractPage {
 
-    @FindBy(css = "evnt-toggle-filters-button")
+    @FindBy(css = ".evnt-toggle-filters-button")
     public WebElement buttonMoreFilters;
     @FindBy(css = ".evnt-more-filters")
     public WebElement tabMoreFilters;
@@ -21,13 +21,13 @@ public class VideoPage extends AbstractPage {
     @FindBy(css = ".evnt-filter-button[id=filter_category]")
     public WebElement buttonCategoryFilter;
     @FindBy(css = ".evnt-filter-menu[aria-labelledby='filter_category'] .evnt-text-fields")
-    public WebElement inputSearchCategoryFilter; //sendkeys Testing???
+    public WebElement inputSearchCategoryFilter;
     @FindBy(css = ".evnt-filter-menu[aria-labelledby='filter_category'] .evnt-checkbox .form-check-label[data-value='E2E Testing']")
     public WebElement checkBoxE2EInSearchCategoryFilter;
     @FindBy(css = ".evnt-filter-button[id=filter_location]")
     public WebElement buttonLocationFilter;
     @FindBy(css = ".evnt-filter-menu[aria-labelledby='filter_location'] .evnt-text-fields")
-    public WebElement inputSearchLocationFilter;//sendkeys Belarus
+    public WebElement inputSearchLocationFilter;
     @FindBy(css = ".evnt-filter-menu[aria-labelledby='filter_location'] .evnt-checkbox:nth-child(2)")
     public WebElement checkBoxInSearchLocationFilter;
     @FindBy(css = ".evnt-filter-button[id=filter_language]")
@@ -45,7 +45,7 @@ public class VideoPage extends AbstractPage {
         super(driver);
     }
 
-    @Step("")
+    @Step("Открыть все фильтры")
     public void openMoreFilters() {
         waitForElement(buttonMoreFilters).click();
         waitForElement(tabMoreFilters);
@@ -81,7 +81,7 @@ public class VideoPage extends AbstractPage {
     }
 
     @Step("Проверка данных найденных видеео")
-    public void assertFoundCardData(){
+    public void assertFoundCardData() {
         String foundCardName = waitForElement(videoCardName).getText();
         String foundCardLanguage = waitForElement(videoCardLanguage).getText();
 
@@ -90,7 +90,7 @@ public class VideoPage extends AbstractPage {
     }
 
     @Step("Проверка что найденные видео содержат текст")
-    public void assertFoundCardNameContains(String name){
+    public void assertFoundCardNameContains(String name) {
         boolean anyMatch = getVideoCardNames().stream()
                 .map(WebElement::getText)
                 .anyMatch(text -> "inside".equals(name));

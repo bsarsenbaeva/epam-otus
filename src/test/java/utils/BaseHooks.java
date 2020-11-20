@@ -1,18 +1,14 @@
 package utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BaseHooks {
     protected static String baseUrl;
@@ -27,11 +23,6 @@ public class BaseHooks {
     @SneakyThrows
     @BeforeEach
     public void initDriver() {
-//        WebDriverManager.chromedriver().setup();
-//        driver = new ChromeDriver();
-//        driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(5, SECONDS);
-
         String selenoidURL = "http://localhost:4444/wd/hub";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName("chrome");
@@ -40,9 +31,6 @@ public class BaseHooks {
         capabilities.setCapability("screenResolution", "1280x1024");
         capabilities.setCapability("enableVideo", true);
         capabilities.setCapability("enableLog", true);
-//        capabilities.setCapability("videoName", "video.mp4");
-//        capabilities.setCapability("logName", "log.log");
-//        capabilities.setCapability("screenResolution", "1280x1024");
 
         driver = new RemoteWebDriver(new URL(selenoidURL), capabilities);
     }
